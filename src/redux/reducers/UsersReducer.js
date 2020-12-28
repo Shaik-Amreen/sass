@@ -1,10 +1,10 @@
-import {FACDISP} from '../actions/CasActionTypes' 
+import {USERS} from '../actions/CasActionTypes' 
 
-export const FacInfoReducer=(state={},action)=>{
+export const UsersReducer=(state={},action)=>{
     console.log(action.payload)
     switch(action.type){
         
-        case FACDISP:
+        case USERS:
             return action.payload
         default:
             return state

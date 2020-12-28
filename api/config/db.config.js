@@ -36,8 +36,10 @@ const sequelize= new Sequelize(env.database,env.username,env.password,
     db.StudentLabInternalMarks=require('../models/StudentLabInternal.Model')(sequelize,Sequelize)
     db.StudentLabExternalMarks=require('../models/StudentLabExternalMarks.model')(sequelize,Sequelize)
     db.StudentLabDTDMarks=require('../models/LabDtD.Model')(sequelize,Sequelize)
-    
-    
+    db.DaFaculty=require('../models/DaFaculty.Model')(sequelize,Sequelize)
+    db.ClgSalary=require('../models/Salary.Model')(sequelize,Sequelize)
+    db.Facleave=require('../models/Facleave.Model')(sequelize,Sequelize)
+    db.Applyleave=require('../models/Applyleave.Model')(sequelize,Sequelize)
     //checking for db connection
     try {
          sequelize.authenticate();

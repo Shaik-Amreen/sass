@@ -1,0 +1,33 @@
+.ca{
+
+    text-align: center;
+}
+.select{
+border-top-right-radius:6px;
+border-bottom-right-radius: 6px;
+border-color: silver;
+padding-top: 2.5px;
+padding-bottom:2.5px;
+}
+.card strong{
+  color:#0275d8;
+}
+.leave textarea{
+  width: 100%;
+  border-color: silver;
+ border-radius: 6px;
+ padding-left: 10px;
+ 
+}
+select { 
+ border-color: silver;
+  border-radius:2.5px; 
+  padding: 0.5%;
+  font-weight: 500;
+  color: darkblue
+} 
+.data{
+  text-align: left;
+  font-weight: 450;
+  color:#848484
+}

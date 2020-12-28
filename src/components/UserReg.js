@@ -34,7 +34,7 @@ function UserReg(props) {
         <>
         <div className="App-Card">
           <img src={logo} alt="CAS" width="200 px" height="200px"></img>
-          <div className="form-group" style={{width:"200px"},{marginLeft:"5px"},{marginTop:"10px"}}>
+          <div className="form-group" style={{width:"200px"}}>
           <h5>USER REGISTRATION</h5>
             <div className="container"><form onSubmit={(e)=>handleSubmit(e)}>
             <select className="form-control" value={logas} id="Select1" onChange={(e)=>{setLogas(e.target.value)}}>

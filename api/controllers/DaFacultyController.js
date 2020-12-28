@@ -1,5 +1,5 @@
 const db=require('../config/db.config')
-const Emp_Info=db.Emp_Info
+const Emp_Info=db.DaFaculty
 
 let bcrypt=require('bcryptjs');
 const { Op } = require('sequelize');
@@ -9,31 +9,17 @@ exports.create = (req, res) => {
     // Save Employee  to MySQL database
   
     const emp={
-        empid:req.body.empid,
-        empname:req.body.empname,
-        empsname:req.body.empsname,
-        empgen:req.body.empgen,
-        empdes:req.body.empdes,
-        empdept:req.body.empdept,
-        empqua:req.body.empqua,
-        empphno:req.body.empphno,
-        empemail:req.body.empemail,
-        status:req.body.status
+        date:req.body.date,
+        da:req.body.da,
+        
     }
 //alert(user.utype)
 Emp_Info.findOrCreate({
-    where: { empid: emp.empid },
+    where: { date: emp.date },
     defaults: {
-        empid:emp.empid,
-        empname:emp.empname,
-        empsname:emp.empsname,
-        empgen:emp.empgen,
-        empdes:emp.empdes,
-        empdept:emp.empdept,
-        empqua:emp.empqua,
-        empphno:emp.empphno,
-        empemail:emp.empemail,
-        status:emp.status
+        date:emp.date,
+        da:emp.da,
+        
     }
   }).then(([user,reg])=>{
     
@@ -45,11 +31,11 @@ Emp_Info.findOrCreate({
 //fetch emp by id
   exports.empinfo=(req,res)=>{
     const emp={
-      empid:req.body.empid
+      date:req.body.date
   }
     Emp_Info.findOne({ 
       where:{
-       empid:emp.empid }
+       date:emp.date }
      })
     .then(nuser=>{
       res.send(nuser)
@@ -65,6 +51,7 @@ Emp_Info.findOrCreate({
     Emp_Info.findAll().then(users => {
       // Send all Books to Client
       res.send(users);
+      console.log(users)
     }).catch(err => {
       res.status(500).send("Error -> " + err);
     })
@@ -74,12 +61,11 @@ Emp_Info.findOrCreate({
  // Find a emp by shaort name
 exports.findByname = (req, res) => {  
     
-        const empname=req.params.empname
-        console.log(empname)
-    console.log("amrennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+        const da=req.params.da
+    console.log(da)
       Emp_Info.findOne({ 
         where:{
-         empid:empname}
+         date:da}
        })
       .then(nuser=>{
         res.send(nuser)
@@ -94,39 +80,20 @@ exports.findByname = (req, res) => {
 
   // Update a User
   exports.update = (req, res) => {
-   const emp={
-      empid:req.body.empid,
-     /* empname:req.body.empname,
-         empsname:req.body.empsname,
-         empgen:req.body.empgen,
-         empdes:req.body.empdes,
-         empdept:req.body.empdept,
-         empqua:req.body.empqua,
-         empphno:req.body.empphno,
-         empemail:req.body.empemail,*/
-         status:req.body.status
-    }
+    var user = req.body;
     //const name = req.params.name;
     Emp_Info.update({ 
-       empid:emp.empid,
-    /* empname:emp.empname,
-        empsname:emp.empsname,
-        empgen:emp.empgen,
-        empdes:emp.empdes,
-        empdept:emp.empdept,
-        empqua:emp.empqua,
-        empphno:emp.empphno,
-        empemail:emp.empemail,*/
-        status:emp.status
+        date:req.body.date,
+        da:req.body.da,
+           
           }, 
           { 
             where: {
-              empid:emp.empid
+              date: req.params.date
             } 
           })
           .then(() => {
-              res.status(200).send(emp);
-              console.log(emp)
+              res.status(200).send(user);
              }).catch(err => {
               res.status(500).send("Error -> " + err);
              })
@@ -134,16 +101,12 @@ exports.findByname = (req, res) => {
    
   // Delete a emp by Id
   exports.delete = (req, res) => {
-    const empid = req.params.empid;
+    const date = req.params.date;
     Emp_Info.destroy({
-          where: { empid: empid }
+          where: { date: date }
         }).then(() => {
           res.status(200).send('user has been deleted!');
         }).catch(err => {
           res.status(500).send("Fail to delete!");
         });
   };
-
-
-
-  

@@ -38,6 +38,8 @@ Users.findOrCreate({
       pwd:req.body.pwd,
       utype:req.body.utype
   }
+
+  
     Users.findOne({ 
       where:{
       [Op.and]:[{ un:user.un },{pwd:user.pwd}]

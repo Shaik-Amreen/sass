@@ -1,3 +1,6 @@
 export const LOGIN="LOGIN"
 export const REG="REG"
 export const FACDISP="FACDISP"
+export const USERS="USERS"
+export const EMPCRE="EMPCRE"
+export const ADD="ADD"

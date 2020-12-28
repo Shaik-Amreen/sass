@@ -1,10 +1,10 @@
-import {FACDISP} from '../actions/CasActionTypes' 
+import {GETLEAVE} from '../actions/LeaveActionTypes' 
 
-export const FacInfoReducer=(state={},action)=>{
+export const GetleaveReducer=(state={},action)=>{
     console.log(action.payload)
     switch(action.type){
         
-        case FACDISP:
+        case GETLEAVE:
             return action.payload
         default:
             return state

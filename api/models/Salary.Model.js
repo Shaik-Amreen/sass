@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Emp_Info = sequelize.define('Emp_Info', {
+    const Salary = sequelize.define('ClgSalary', {
       empid: {
       type: Sequelize.STRING
       
@@ -7,35 +7,32 @@ module.exports = (sequelize, Sequelize) => {
       empname: {
       type: Sequelize.STRING
       },
-      empsname: {
-        type: Sequelize.STRING
-        },
-        empgen: {
-          type: Sequelize.STRING
-          },
-      empdes: {
-        type: Sequelize.STRING
-        },
         empdept: {
           type: Sequelize.STRING
           },
-          empqua: {
+          empaccno: {
             type: Sequelize.STRING
             },
-            empphno: {
+            empbasic: {
               type: Sequelize.STRING
               },
-              empemail: {
+              emphra: {
                 type: Sequelize.STRING
                 },
-                status:{
-                  type: Sequelize.STRING
-                }
+                empda: {
+                    type: Sequelize.STRING
+                    },
+                    empsalary: {
+                      type: Sequelize.STRING
+                      },
+                      empdate: {
+                        type: Sequelize.STRING
+                        },
     },{
       timestamps: false
     },
     {freezeTableName: true
 });
     
-    return Emp_Info;
+    return Salary;
   }

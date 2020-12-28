@@ -1,0 +1,5 @@
+export const LEAVE="LEAVE"
+export const LEAVEINFO="LEAVEINFO"
+export const APPLYLEAVE="APPLYLEAVE"
+export const GETLEAVE="GETLEAVE"
+export const CREATELEAVE="CREATELEAVE"

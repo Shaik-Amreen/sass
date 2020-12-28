@@ -1,10 +1,10 @@
-import {FACDISP} from '../actions/CasActionTypes' 
+import {SALARY} from '../actions/SalaryActionTypes' 
 
-export const FacInfoReducer=(state={},action)=>{
+export const SalaryReducer=(state={},action)=>{
     console.log(action.payload)
     switch(action.type){
         
-        case FACDISP:
+        case SALARY:
             return action.payload
         default:
             return state

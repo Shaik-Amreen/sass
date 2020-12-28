@@ -1,5 +1,5 @@
 const db=require('../config/db.config')
-const Emp_Info=db.Emp_Info
+const Salary=db.ClgSalary
 
 let bcrypt=require('bcryptjs');
 const { Op } = require('sequelize');
@@ -11,29 +11,28 @@ exports.create = (req, res) => {
     const emp={
         empid:req.body.empid,
         empname:req.body.empname,
-        empsname:req.body.empsname,
-        empgen:req.body.empgen,
-        empdes:req.body.empdes,
         empdept:req.body.empdept,
-        empqua:req.body.empqua,
-        empphno:req.body.empphno,
-        empemail:req.body.empemail,
-        status:req.body.status
+        empaccno:req.body.empaccno,
+        empbasic:req.body.empbasic,
+        emphra:req.body.emphra,
+        empda:req.body.empda,
+        empsalary:req.body.empsalary,
+        empdate :req.body.empdate
+        
     }
 //alert(user.utype)
-Emp_Info.findOrCreate({
-    where: { empid: emp.empid },
+Salary.findOrCreate({
+    where: { empdate: emp.empdate+emp.empid},
     defaults: {
         empid:emp.empid,
         empname:emp.empname,
-        empsname:emp.empsname,
-        empgen:emp.empgen,
-        empdes:emp.empdes,
+        empda:emp.empda,
+        empsalary:emp.empsalary,
         empdept:emp.empdept,
-        empqua:emp.empqua,
-        empphno:emp.empphno,
-        empemail:emp.empemail,
-        status:emp.status
+        empaccno:emp.empaccno,
+        empbasic:emp.empbasic,
+        emphra:emp.emphra,
+         empdate:emp.empdate,
     }
   }).then(([user,reg])=>{
     
@@ -47,7 +46,7 @@ Emp_Info.findOrCreate({
     const emp={
       empid:req.body.empid
   }
-    Emp_Info.findOne({ 
+    Salary.findOne({ 
       where:{
        empid:emp.empid }
      })
@@ -62,7 +61,7 @@ Emp_Info.findOrCreate({
   }
   //fetching all uasers
   exports.findAll = (req, res) => {
-    Emp_Info.findAll().then(users => {
+    Salary.findAll().then(users => {
       // Send all Books to Client
       res.send(users);
     }).catch(err => {
@@ -75,9 +74,8 @@ Emp_Info.findOrCreate({
 exports.findByname = (req, res) => {  
     
         const empname=req.params.empname
-        console.log(empname)
-    console.log("amrennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
-      Emp_Info.findOne({ 
+    console.log(empname)
+      Salary.findOne({ 
         where:{
          empid:empname}
        })
@@ -94,39 +92,27 @@ exports.findByname = (req, res) => {
 
   // Update a User
   exports.update = (req, res) => {
-   const emp={
-      empid:req.body.empid,
-     /* empname:req.body.empname,
-         empsname:req.body.empsname,
-         empgen:req.body.empgen,
-         empdes:req.body.empdes,
-         empdept:req.body.empdept,
-         empqua:req.body.empqua,
-         empphno:req.body.empphno,
-         empemail:req.body.empemail,*/
-         status:req.body.status
-    }
+    var user = req.body;
     //const name = req.params.name;
-    Emp_Info.update({ 
-       empid:emp.empid,
-    /* empname:emp.empname,
-        empsname:emp.empsname,
-        empgen:emp.empgen,
-        empdes:emp.empdes,
-        empdept:emp.empdept,
-        empqua:emp.empqua,
-        empphno:emp.empphno,
-        empemail:emp.empemail,*/
-        status:emp.status
+    Salary.update({ 
+        empid:req.body.empid,
+        empname:req.body.empname,
+        empda:req.body.empda,
+        empsalary:req.body.empsalary,
+        
+        empdept:req.body.empdept,
+        empaccno:req.body.empaccno,
+        empbasic:req.body.empbasic,
+        emphra:req.body.emphra
+           
           }, 
           { 
             where: {
-              empid:emp.empid
+              empid: req.params.empid
             } 
           })
           .then(() => {
-              res.status(200).send(emp);
-              console.log(emp)
+              res.status(200).send(user);
              }).catch(err => {
               res.status(500).send("Error -> " + err);
              })
@@ -135,7 +121,7 @@ exports.findByname = (req, res) => {
   // Delete a emp by Id
   exports.delete = (req, res) => {
     const empid = req.params.empid;
-    Emp_Info.destroy({
+    Salary.destroy({
           where: { empid: empid }
         }).then(() => {
           res.status(200).send('user has been deleted!');
@@ -143,7 +129,3 @@ exports.findByname = (req, res) => {
           res.status(500).send("Fail to delete!");
         });
   };
-
-
-
-  

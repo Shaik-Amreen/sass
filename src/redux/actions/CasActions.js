@@ -1,4 +1,4 @@
-import {LOGIN,REG,FACDISP} from './CasActionTypes'
+import {LOGIN,REG,FACDISP,USERS} from './CasActionTypes'
 import axios from 'axios'
 //  axios=axios.create({
 //     baseURL:'http://localhost:4000/'
@@ -39,16 +39,32 @@ export const UserLog=(userData)=>{
 }
 //Faculty display on dashboard
 export const facdisp=(empname)=>{
-            //  const emp={
-            //      name:empname
-            //  }
+           console.log(empname)
      return dispatch=>{
          return axios.post('http://localhost:4000/empname/'+empname)
          .then(result=>{
              dispatch({
                  type:FACDISP,
-                 payload:result.data
+                 payload:result.data,
+               
              })
+            
          })
      }
 }
+
+export const users=()=>{
+           
+    return dispatch=>{
+        return axios.get('http://localhost:4000/emps')
+        .then(result=>{
+            dispatch({
+                type:USERS,
+                payload:result.data,
+              
+            })
+           
+        })
+    }
+}
+

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {UserLog} from '../redux/actions/CasActions'
 import {Link,Redirect,withRouter} from 'react-router-dom'
 import Footer from './Footer'
-import logo from '../cas.png'
+import logo from '../unnamed.png'
 function UserLogin(props) {
    
      const [un,setUn]=useState("")
@@ -26,26 +26,34 @@ function UserLogin(props) {
 }
    
     return (
-        <>
+        <div style={{paddingTop:"15%"}}>
         
-        <div className="App-Card">
-        <img src={logo} alt="CAS" width="200 px" height="200px"></img>
+        <div className="card"  >
+        <div className="row  ">
+        <div className="col"  style={{paddingTop:"3%"}}>
+        
+        <img src={logo}  alt="CAS" width="300px" height="300px"></img>
+        </div>
+        <div className="col">
+        
             <form onSubmit={(e)=>handleSubmit(e)}>
-            <div className=" container form-group" style={{width:"260px"},{marginLeft:"5px"}}>
-    <h5>USER LOGIN</h5>
+            <h3 style={{textAlign:"left",color:"grey",paddingTop:"3%"}}>Sign in</h3>
+            <div className=" container form-group" >
+   
     <br/>
-                <span>User Name</span>
-                 <input  className="form-control  "  type="text" value={un} onChange={(e)=>{setUn(e.target.value)}} placeholder="enter user name"></input><br/>
-                 <span>User Password</span>
-                <input className="form-control  "  type="password" value={pwd} onChange={(e)=>{setPwd(e.target.value)}} placeholder="password"></input><br/>
-                <button className="btn btn-sm btn-secondary " type="submit">LOGIN</button>
-                <br/>
-                {<Link style={{color:"white"}} to='/reg'>Not having Account<b style={{color:"red"}}>Register here</b></Link>}<br/>
-                {<Link style={{color:"white"}}  to="/">Forgot Username/Password<b style={{color:"red"}}>Click here</b></Link>}                
-                </div>
+
+    <input  className="form-control"  type="text" value={un} onChange={(e)=>{setUn(e.target.value)}} placeholder="User Name"></input><br/>
+    <input className="form-control "  type="password" value={pwd} onChange={(e)=>{setPwd(e.target.value)}} placeholder="Password"></input><br/>
+                <button className="btn btn-primary " style={{fontWeight:700,width:"30%"}} type="submit">LOGIN</button>
+                <br/><br/>
+                
+                {<Link to="/"><span style={{color:"crimson"}}>Forgot Username or Password ?  </span></Link>}       
+                 {<Link style={{color:"grey"}} to='/reg'> |  Not registered yet? <span style={{color:"#049fd9"}}>Sign Up !</span></Link>}         
+                </div><Footer/>
             </form>
-           
-       <Footer/>
+            
+          
+       
        {console.log(props.LUser) }
     {props.LUser.utype==="p"?<Redirect to={
         {          
@@ -111,12 +119,14 @@ function UserLogin(props) {
           
         }
     }></Redirect>:
-    <div className="alert-danger" role="alert"> Not Loggged </div>}
-        
-        
+    <div className="alert-danger"  role="alert"> Not Loggged </div>}
+        <div style={{paddingBottom:"3%"}}>  </div>
+        </div> 
+          
+          </div>
         </div>
         
-        </>
+        </div>
     )
 }
 const mapStateToProps=(state)=>{

@@ -34,6 +34,7 @@ function App() {
   <Route exact path="/Student" component={StudentDashBoard}></Route>
   <Route exact path="/Esection" component={EsectionDashBoard}></Route>
   <Route exact path="/Asection" component={AsectionDashBoard}></Route>
+
 </Switch>
  </div>
   </div>

@@ -1,19 +1,18 @@
 
 module.exports = (sequelize, Sequelize) => {
-    const User = sequelize.define('User', {
-      un: {
+    const DaFaculty = sequelize.define('DaFaculty', {
+      date: {
       type: Sequelize.STRING
       
         },
-      pwd: {
-      type: Sequelize.STRING
-      },
-      utype: {
+      da: {
         type: Sequelize.STRING
         }
     },{
       timestamps: false
-    });
+    },
     
-    return User;
+);
+    
+    return DaFaculty;
   }
