@@ -9,7 +9,7 @@ function Check() {
     let i,shdate;let [data,setdata]=useState([]);
     const[showabs,setShowabs]=useState([])
     const [showpre,setShowpre]=useState([])
-    const[Dates,setDate]=useState([])
+    const[Dates,setDate]=useState([]);const [a,seta]=useState(0)
    useEffect(()=>{
 const input = document.getElementById('input');
 input.addEventListener("change",()=>{
@@ -45,13 +45,15 @@ input.addEventListener("change",()=>{
      const click=()=> {
         setShowabs(difference); 
         setShowpre(result);
-    console.log(Dates)}
+    console.log(Dates);seta(1)}
 
      return (
         
-        <div><br/>
+        <div>
+            <br/>
              <h1 style={{color:"#073590",fontFamily:"Comic Sans MS"}}>GET  ATTENDANCE BY UPLOADING  FILE</h1>
             <br/>
+            
             <form class="form-inline justify-content-center">
             <select class="form-control form-control-sm wl-3  w-50" id="class">
               <option value=" ">SELECT CLASS</option>
@@ -59,14 +61,17 @@ input.addEventListener("change",()=>{
             </form><br/>
             <h5>UPLOAD FILE 👉🏻👉🏻👉🏻 <input id="input" type="file"/></h5><br/>
             
-            <MDBBtn onClick={click} color="primary"><strong>CLICK FOR ATTENDANCE</strong></MDBBtn><br/><br/>
+           {(a===0)? <MDBBtn onClick={click} style={{cursor:"pointer"}} color="primary"><strong>CLICK FOR ATTENDANCE</strong></MDBBtn>:null}<br/><br/>
             <form class="form-inline justify-content-center">
             <div class="card border-primary mb-3" style={{width:"35%",padding:"1%",fontSize:"17px",color:"#0000ff",fontFamily:"Comic Sans MS",textAlign:"left"}}>
             ► Upload the downloaded sheet by converting it to excel AND make sure sheet name is DATE
             <br/>
         </div>
             </form>
-                <br/><br/>
+
+                <br/><br/>{(a===1)?
+                <button class="btn btn-danger" style={{borderRadius:"0px",fontWeight:"700",cursor:"pointer",float:"right"}}
+                onClick={()=>{window.location.reload()}}>Refresh</button>:null}
           {showpre.map((item,i)=>(
                     <div class="card">
                     <table><br/>
@@ -77,7 +82,7 @@ input.addEventListener("change",()=>{
               <tr><strong>{it}</strong></tr>
                        ))} </table>
                        </th>
-                      <th><h4 style={{fontFamily:"Comic Sans MS"}}>DATE : {Dates[i]}</h4></th>
+                      <th><h4 style={{fontFamily:"Comic Sans MS"}}>{Dates[i]}</h4></th>
                        <th>
                        <h4 style={{color:"red",fontFamily:"Comic Sans MS"}}>Absent</h4>
                        <table className="table table-striped">
@@ -89,6 +94,8 @@ input.addEventListener("change",()=>{
                    </table>
                    </div>
                  ))}
+
+
                </div>
      )
 }
